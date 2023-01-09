@@ -16,7 +16,7 @@ namespace BlazorServerApp
 			{
 				new Contact
 				{
-					Name = "Marley",
+					Name = "Marley", 
 					Email= "None",
 				}
 			};

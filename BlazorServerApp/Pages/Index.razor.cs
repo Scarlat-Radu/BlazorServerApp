@@ -6,7 +6,7 @@ namespace BlazorServerApp.Pages
     public partial class Index
     {
         [Inject]
-        IContactSerivce contactService { get; set; }
+        IContactSerivce contactService { get; set; } //Depency injection
 
         private int _currentCount;
         private string userName = "Radu";

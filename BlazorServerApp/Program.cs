@@ -33,6 +33,6 @@ static void ConfigureServices(IServiceCollection services)
     services.AddServerSideBlazor();
     //services.AddSingleton<ContactService>();//same instance
     //services.AddTransient<ContactService>();//new instance
-    services.AddSingleton<IContactSerivce, ContactServiceTesting>();
+    services.AddSingleton<IContactSerivce, ContactService>();
 	services.AddSingleton<WeatherForecastService>();
 }

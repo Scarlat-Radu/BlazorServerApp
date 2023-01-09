@@ -1,0 +1,24 @@
+﻿@page "/test-javascript"
+@inject IJSRuntime jsRuntime
+
+<h3>TestJavaScript</h3>
+
+
+<button @onclick="ShowAlert">Alert</button>
+<button @onclick="ShowConfirm">Display Confirm</button><br />
+
+<span>@confirmResult</span>
+
+@code {
+	private string confirmResult;
+
+	private void ShowAlert()
+	{
+		jsRuntime.InvokeVoidAsync("alert","Hello World");
+	}
+	private async Task ShowConfirm()
+	{
+		var result = await jsRuntime.InvokeAsync<bool>("confirm", "Do you want to continue?");
+		confirmResult = result.ToString();
+	}
+}
