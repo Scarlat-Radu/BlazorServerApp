@@ -6,13 +6,10 @@
 
 <input placeholder="Name:" @bind=name/>
 <br/><br/>
-
 <input placeholder="Email:" @bind=email/>
 <br/><br/>
-
 <button onclick="@AddContact">Add Contact</button>
 <br /><br/>
-
 
 @if (contactService.GetContacts().Count == 0)
 {

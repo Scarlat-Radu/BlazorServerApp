@@ -2,7 +2,7 @@
 
 namespace BlazorServerApp
 {
-    public class ContactService : IContactSerivce
+    public class ContactService : IContactSerivce //added inteface for contacts
     {
         public List<Contact> contactList =new List<Contact>();
 

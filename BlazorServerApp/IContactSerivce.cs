@@ -2,7 +2,7 @@
 
 namespace BlazorServerApp
 {
-	public interface IContactSerivce
+	public interface IContactSerivce //Contact service interface
 	{
 		List<Contact> GetContacts();
 		void AddContact(Contact contact);

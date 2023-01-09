@@ -2,7 +2,7 @@
 
 namespace BlazorServerApp
 {
-	public class ContactServiceTesting : IContactSerivce
+	public class ContactServiceTesting : IContactSerivce //reimplemtent for a new class
 	{
 		public List<Contact> Contacts = new List<Contact>();
 		public void AddContact(Contact contact)
