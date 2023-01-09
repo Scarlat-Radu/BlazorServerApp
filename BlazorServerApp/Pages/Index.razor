@@ -1,0 +1,34 @@
+﻿@page "/"
+@using BlazorServerApp.Pages.Components
+<PageTitle>Index</PageTitle>  
+
+<h3>Hello @GetUsesName()</h3>
+
+<p>Day: @GetTimeNow()</p>
+<button @onclick="ChangeName"> Change Name </button>
+<button @onclick="@(() => { userName = "Radu"; })"> Change Again </button>
+
+<br />
+
+<ContactList Contacts="contacts">
+    <EmptyContent>
+        <br />
+        <span>There are no contacts.</span>
+        <br />
+    </EmptyContent>
+    <NullContancts>
+        <br />
+        <span>Contacts are loading...</span>
+        <br />
+    </NullContancts>
+</ContactList>
+
+@*Components attributes*@
+<br />
+<SimpleTextBox placeholder="Test" type="text" disabled="disabled"></SimpleTextBox>
+<br />
+<SimpleTextBox @attributes="@(new Dictionary<string,object>{ {"placeholder","New Test"},})"></SimpleTextBox>
+<br />
+<SimpleTextBox @attributes="@SimpleTextBoxAttributes"></SimpleTextBox>
+<br />
+<h3>@_currentCount</h3>

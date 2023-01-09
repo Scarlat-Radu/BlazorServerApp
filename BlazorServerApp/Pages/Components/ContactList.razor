@@ -1,0 +1,30 @@
+﻿@*<input type="checkbox" @onchange=@(()=>{ DisplayEmail = !DisplayEmail;})/><label>Display email</label>*@
+
+<input type="checkbox" @bind="DisplayEmail" /><label>Display email</label>
+
+@if (Contacts is null)
+{
+    @NullContancts
+}
+else if (Contacts.Count == 0)
+{
+    @EmptyContent
+}else
+@foreach (Contact contact in Contacts)
+    {
+        <ContactComp CurrentContact="contact" DisplayEmail=@DisplayEmail DeleteCurrentContact="DeleteContact"></ContactComp>
+        //reuseable oomponent
+    }
+
+@code{
+    [Parameter]
+    public RenderFragment NullContancts { get; set; }
+    [Parameter]
+    public RenderFragment EmptyContent { get; set; }
+    [Parameter]
+    public List<Contact> Contacts { get; set; }
+    private bool DisplayEmail = true;
+
+    private void DeleteContact(Contact contact) => Contacts.Remove(contact);
+
+}

@@ -1,0 +1,42 @@
+﻿@page "/Test"
+@page "/Sample"
+@inject IContactSerivce contactService
+
+<h3>This is a test page.</h3>
+
+<input placeholder="Name:" @bind=name/>
+<br/><br/>
+
+<input placeholder="Email:" @bind=email/>
+<br/><br/>
+
+<button onclick="@AddContact">Add Contact</button>
+<br /><br/>
+
+
+@if (contactService.GetContacts().Count == 0)
+{
+	<b>No Contacts to display...</b>
+}
+else
+{
+	@foreach(var contact in contactService.GetContacts())
+	{
+		<b>@contact.Name</b><br/>
+		<i>@contact.Email</i><br />
+		<hr/>
+	}
+}
+@code {
+	private string name, email;
+
+	private void AddContact()
+	{
+		var contact = new Contact
+			{
+				Name = name,
+				Email = email,
+			};
+		contactService.AddContact(contact);
+	}
+}
