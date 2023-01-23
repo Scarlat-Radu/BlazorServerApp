@@ -1,4 +1,5 @@
 ﻿using BlazorServerApp.Models;
+using BlazorServerApp.Pages.ContactComponents;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorServerApp.Pages
@@ -10,7 +11,11 @@ namespace BlazorServerApp.Pages
 
         private int _currentCount;
         private string userName = "Radu";
+
+        private bool isContactVisible = true;
         private List<Contact> contacts;
+        private ContactList contactList;
+
         private DateTime dateTimeNow = new DateTime();
         private readonly PeriodicTimer _periodicTimer = new(TimeSpan.FromSeconds(5));
         private Dictionary<string, object> SimpleTextBoxAttributes = new Dictionary<string, object>
@@ -61,6 +66,16 @@ namespace BlazorServerApp.Pages
         private void ChangeName()
         {
             userName = "Marley";
+        }
+
+        private void HideContacts()
+        {
+            isContactVisible = !isContactVisible;
+
+            if (isContactVisible)
+                contactList.ShowContacts();
+            else
+                contactList.HideContacts();
         }
 
     }

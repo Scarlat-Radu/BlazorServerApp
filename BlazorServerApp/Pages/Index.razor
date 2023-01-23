@@ -10,7 +10,7 @@
 
 <br />
 
-<ContactList Contacts="contacts">
+<ContactList @ref="contactList" Contacts="contacts">
     <EmptyContent>
         <br />
         <span>There are no contacts.</span>
@@ -22,6 +22,10 @@
         <br />
     </NullContancts>
 </ContactList>
+<br/>
+
+<button @onclick="HideContacts">Show/Hide Contacts</button>
+
 
 @*Components attributes*@
 <br />

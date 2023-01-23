@@ -3,21 +3,32 @@
 
 <input type="checkbox" @bind="DisplayEmail" /><label>Display email</label>
 
-@if (Contacts is null)
+@if(DisplayContacts)
 {
-    @NullContancts
-}
-else if (Contacts.Count == 0)
-{
-    @EmptyContent
-}else
-@foreach (Contact contact in Contacts)
+    @if (Contacts is null)
     {
-        <ContactComp CurrentContact="contact" DisplayEmail=@DisplayEmail DeleteCurrentContact="DeleteContact"></ContactComp>
-        //reuseable oomponent
+        @NullContancts
     }
+    else if (Contacts.Count == 0)
+    {
+        @EmptyContent
+    }else
+    @foreach (Contact contact in Contacts)
+    {
+        //reuseable oomponent
+        //java method
+        //<ContactComp CurrentContact="contact" DisplayEmail=@DisplayEmail DeleteCurrentContact="DeleteContact"></ContactComp>
+
+        <ContactComp CurrentContact="contact" DisplayEmail=@DisplayEmail DeleteCurrentContact="RequestPermision"></ContactComp>
+        
+    }
+}
+
+<DeleteConfirmation @ref="deleteConfirmation" OnConfirmed="OnDeleteConfirmed"></DeleteConfirmation>
 
 @code{
+
+    private DeleteConfirmation deleteConfirmation;
     [Parameter]
     public RenderFragment NullContancts { get; set; }
     [Parameter]
@@ -26,6 +37,7 @@ else if (Contacts.Count == 0)
     public List<Contact> Contacts { get; set; }
 
     private bool DisplayEmail = true;
+    private bool DisplayContacts = true;
 
     private async Task DeleteContact(Contact contact)
     {
@@ -35,4 +47,20 @@ else if (Contacts.Count == 0)
 
     }
 
+    private async Task RequestPermision(Contact contact)
+    {
+        deleteConfirmation.BodyContent = $"Do you want to delete {contact.Name} from the list?";
+        deleteConfirmation.ContactToDelete = contact;
+        deleteConfirmation.Show();
+
+    }
+
+    private async Task OnDeleteConfirmed(Contact contact)
+    {
+        Contacts.Remove(contact);
+        deleteConfirmation.Hide();
+    }
+
+    public void ShowContacts() => DisplayContacts = true;
+    public void HideContacts() => DisplayContacts = false;
 }
