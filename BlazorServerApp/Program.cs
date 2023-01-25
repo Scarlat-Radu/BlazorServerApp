@@ -1,5 +1,5 @@
-using BlazorServerApp;
 using BlazorServerApp.Data;
+using BlazorServerApp.Pages.ContactComponents;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -8,6 +8,8 @@ namespace BlazorServerApp.Pages
     {
         [Inject]
         IContactSerivce contactService { get; set; } //Depency injection
+        [Inject]
+        NavigationManager navigationManager { get; set; }
 
         private int _currentCount;
         private string userName = "Radu";
@@ -78,5 +80,9 @@ namespace BlazorServerApp.Pages
                 contactList.HideContacts();
         }
 
+        private void NavigateTo()
+        {
+            navigationManager.NavigateTo("./testnavigation");
+        }
     }
 }

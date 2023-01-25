@@ -1,0 +1,27 @@
+﻿@inject NavigationManager navManager
+
+@page "/testnavigation"
+@page "/testnavigation/page2"
+@page "/testnavigation/{contactName}"
+
+
+
+<h3>Test - TestNavigation</h3>
+
+<button @onclick="NavigateToIndex">Navigate to Index</button>
+<br/>
+<br/>
+@*Used to Match="NavLinkMatch.Prefix in NavMenu"*@
+<button @onclick="(()=>navManager.NavigateTo(page2))">Navigate to Second Page</button> 
+<br/>
+<br/>
+<span>@contactName</span>
+
+@code {
+    [Parameter]
+    public string contactName { get; set; }//route parameter
+
+    private string page2 = "/testnavigation/page2";
+
+    private void NavigateToIndex() => navManager.NavigateTo("./");
+}
